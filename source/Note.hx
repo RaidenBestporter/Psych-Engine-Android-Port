@@ -60,7 +60,7 @@ class Note extends FlxSprite
 	public var copyAlpha:Bool = true;
 
 	public var hitHealth:Float = 0.023;
-	public var missHealth:Float = 0.0475;
+	public var missHealth:Float = 0.09;
 
 	public var texture(default, set):String = null;
 
@@ -90,10 +90,18 @@ class Note extends FlxSprite
 					colorSwap.hue = 0;
 					colorSwap.saturation = 0;
 					colorSwap.brightness = 0;
+					case 'Poison Note':
+					ignoreNote = mustPress;
+					reloadNote('POISON');
+					noteSplashTexture = 'HURTnoteSplashes';
+					colorSwap.hue = 0;
+					colorSwap.saturation = 0;
+					colorSwap.brightness = 0;
+					
 					if(isSustainNote) {
 						missHealth = 0.1;
 					} else {
-						missHealth = 0.3;
+						missHealth = 0.6;
 					}
 					hitCausesMiss = true;
 				case 'No Animation':
@@ -287,8 +295,7 @@ class Note extends FlxSprite
 			animation.addByPrefix('bluehold', 'blue hold piece');
 		}
 
-		
-		setGraphicSize(Std.int(width * ClientPrefs.noteSize));
+		setGraphicSize(Std.int(width * 0.7));
 		updateHitbox();
 	}
 
